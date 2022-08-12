@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    {% load static %}
+    <title>ADless</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  </head>
+  <body class="is-preload">
+    <!-- Header --><!--헤더안에 있는걸 div로 묶어서 다시 정렬...? -->
+    <header id="header">
+      <div>
+        <h1>ADless</h1>
+      </div>
+      <form action="{% url 'createform' %}" method="POST">
+      {% csrf_token %}
+        <div class="search">
+          <input type="text" name="word" id="word" placeholder="검색어 입력" />
+          <button type="submit" name="run">검색</button>
+        </div>
+      </form>
+    </header>
+    <!-- Main -->
+    <div id="main">
+      <!-- One -->
+      <h2>필터링 후 검색 List</h2>
+      {% for blog in blog_list %}
+      <section id="one">
+        <p>title : {{blog.title}}</p>
+
+        <p>url : <a href="{{blog.blogurl}}" target="_blank">{{blog.blogurl}}</p></a>
+      </section>
+      {% endfor %}
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="inner"></div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.poptrox.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
